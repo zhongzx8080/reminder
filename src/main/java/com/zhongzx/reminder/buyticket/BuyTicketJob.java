@@ -4,6 +4,7 @@ import cn.hutool.core.date.LocalDateTimeUtil;
 import com.zhongzx.reminder.mail.MailService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -29,7 +30,7 @@ public class BuyTicketJob {
      *  是：提醒买票
      *
      * */
-//    @Scheduled(cron = "0 0 20,21,22 * * ? ")
+    @Scheduled(cron = "0 0 20,21,22 * * ? ")
 //    @Scheduled(cron = "0/10 * * * * ?")
     public void checkBuyTicket() {
         LocalDateTime tomorrow = LocalDateTime.now().plusDays(1);
