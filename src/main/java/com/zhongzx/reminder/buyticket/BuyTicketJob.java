@@ -1,12 +1,9 @@
 package com.zhongzx.reminder.buyticket;
 
 import cn.hutool.core.date.LocalDateTimeUtil;
-import cn.hutool.http.HttpUtil;
-import cn.hutool.json.JSONObject;
-import cn.hutool.json.JSONUtil;
+import com.zhongzx.reminder.mail.MailService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -18,10 +15,10 @@ import java.util.Objects;
 @Component
 public class BuyTicketJob {
 
-    @Autowired
-    private BuyTicketConfig buyTicketConfig;
-
     private Map<String, Boolean> sendResultMap = new HashMap<>(8);
+
+    @Autowired
+    private MailService mailService;
 
     /*
      *
@@ -32,7 +29,8 @@ public class BuyTicketJob {
      *  是：提醒买票
      *
      * */
-    @Scheduled(cron = "0 0 0/1 * * ?")
+//    @Scheduled(cron = "0 0 20,21,22 * * ? ")
+//    @Scheduled(cron = "0/10 * * * * ?")
     public void checkBuyTicket() {
         LocalDateTime tomorrow = LocalDateTime.now().plusDays(1);
         String date = LocalDateTimeUtil.format(tomorrow, "yyyyMMdd");
@@ -46,12 +44,6 @@ public class BuyTicketJob {
         remind(date);
     }
 
-    /*
-     *
-     * 通过向企业微信群机器人发送消息提醒
-     * https://work.weixin.qq.com/api/doc/90000/90136/91770
-     *
-     * */
     private void remind(String date) {
 
         if (Objects.equals(sendResultMap.get(date), Boolean.TRUE)) {
@@ -59,22 +51,7 @@ public class BuyTicketJob {
 //            log.info("【{}】已发送提醒", date);
             return;
         }
-
-        String content = String.format("{\n" +
-                "    \"msgtype\": \"text\",\n" +
-                "    \"text\": {\n" +
-                "        \"content\": \"%s\",\n" +
-                "        \"mentioned_list\":[\"@all\"]\n" +
-                "    }\n" +
-                "}\n", buyTicketConfig.getContent());
-        boolean sended;
-        try {
-            String response = HttpUtil.post(buyTicketConfig.getWebhookUrl(), content);
-            JSONObject responseJson = JSONUtil.parseObj(response);
-            sended = responseJson.getInt("errcode") == 0;
-        } catch (Exception exception) {
-            sended = false;
-        }
+        boolean sended = mailService.send();
 
 //        log.info("【{}】发送提醒结果 {}", date, sended);
         sendResultMap.put(date, sended);
