@@ -25,7 +25,7 @@ jobs:
         run: mvn -B package --file pom.xml
       - name: Run
         env:
-          MAIL_ENABLE: true
+          MAIL_ENABLE: ${{ secrets.MAIL_ENABLE }}
           MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
           MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
           MAIL_TO_0: ${{ secrets.MAIL_TO_0 }}
