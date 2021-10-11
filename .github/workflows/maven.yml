@@ -6,7 +6,7 @@ name: Buy ticket remind
 on:
   push:
   schedule:
-    - cron: '0/6 * * * *'
+    - cron: '24 12 * * *'
 
 jobs:
   build:
@@ -29,6 +29,6 @@ jobs:
           MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
           MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
           MAIL_TO_0: ${{ secrets.MAIL_TO_0 }}
-          #MAIL_TO_1: ${{ secrets.MAIL_TO_1 }}
+          MAIL_TO_1: ${{ secrets.MAIL_TO_1 }}
         run: |
           java -jar target/reminder-0.0.1-SNAPSHOT.jar &
