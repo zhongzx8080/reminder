@@ -1,0 +1,36 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: Java CI with Maven
+
+on:
+  schedule:
+    - cron: '0/3 * * * *'
+  push:
+    branches: [ buy-ticket ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        ref: buy-ticket
+    - name: Set up JDK 8
+      uses: actions/setup-java@v2
+      with:
+        java-version: '8'
+        distribution: 'adopt'
+        cache: maven
+    - name: Build with Maven
+      run: mvn -B package --file pom.xml
+    - name: Run
+      env:
+        MAIL_USERNAME: zhongzx8080@qq.com
+        MAIL_PASSWORD: ${{ secret.MAIL_PASSWORD }}
+        MAIL_TO_0: zhongzx8080@qq.com
+      run: |
+        echo run ....
+        jar -jar target/reminder-0.0.1-SNAPSHOT.jar
