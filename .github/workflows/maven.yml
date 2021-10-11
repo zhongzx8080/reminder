@@ -29,5 +29,5 @@ jobs:
         MAIL_TO_0: zhongzx8080@qq.com
       run: |
         echo ls
-        jar -jar target/reminder-0.0.1-SNAPSHOT.jar
+        java -jar target/reminder-0.0.1-SNAPSHOT.jar
 
