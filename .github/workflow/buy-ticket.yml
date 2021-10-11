@@ -23,7 +23,7 @@ jobs:
       env:
         MAIL_USERNAME: zhongzx8080@qq.com
         MAIL_PASSWORD: ${{ secret.MAIL_PASSWORD }}
-        MAIL_TO[0]: zhongzx8080@qq.com
+        MAIL_TO_0: zhongzx8080@qq.com
       run: |
-        echo Hello Github Actions
-        echo $MAIL_USERNAME
+        echo ls
+        jar -jar target/reminder-0.0.1-SNAPSHOT.jar
