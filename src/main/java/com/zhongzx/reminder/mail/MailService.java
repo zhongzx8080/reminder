@@ -21,6 +21,10 @@ public class MailService {
     private boolean send(String from, String subject, String text, String... to) {
         log.info("发送邮件 {} -> {}, {}", from, to, subject, text);
         boolean success = true;
+        if (!mailConfig.isEnable()) {
+            log.info("邮件发送未启用");
+            return success;
+        }
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         try {
             MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
