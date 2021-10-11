@@ -37,7 +37,7 @@ public class BuyTicketJob {
         String date = LocalDateTimeUtil.format(tomorrow, "yyyyMMdd");
         boolean workDay = HolidayUtil.isWorkDay(date);
         if (!workDay) {
-//            log.info("【{}】非工作日", tomorrow);
+            log.info("【{}】非工作日", tomorrow);
             sendResultMap.clear();
             return;
         }
@@ -49,12 +49,12 @@ public class BuyTicketJob {
 
         if (Objects.equals(sendResultMap.get(date), Boolean.TRUE)) {
             // 已发送不重复发送
-//            log.info("【{}】已发送提醒", date);
+            log.info("【{}】已发送提醒", date);
             return;
         }
         boolean sended = mailService.send();
 
-//        log.info("【{}】发送提醒结果 {}", date, sended);
+        log.info("【{}】发送提醒结果 {}", date, sended);
         sendResultMap.put(date, sended);
     }
 }
