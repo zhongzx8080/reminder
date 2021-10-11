@@ -1,7 +1,7 @@
 # This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
-name: Java CI with Maven
+name: Buy ticket remind
 
 on:
   push:
@@ -24,10 +24,11 @@ jobs:
       run: mvn -B package --file pom.xml
     - name: Run
       env:
-        MAIL_USERNAME: zhongzx8080@qq.com
+        MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
         MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
-        MAIL_TO_0: zhongzx8080@qq.com
+        MAIL_TO_0: ${{ secrets.MAIL_TO_0 }}
+        MAIL_TO_1: ${{ secrets.MAIL_TO_1 }}
       run: |
         echo ls
-        java -jar target/reminder-0.0.1-SNAPSHOT.jar
+        java -jar target/reminder-0.0.1-SNAPSHOT.jar &
 
