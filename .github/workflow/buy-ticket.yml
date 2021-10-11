@@ -1,7 +1,7 @@
 name: Remind buy ticket
 on:
   schedule:
-    - cron: '0/1 * * * *'
+    - cron: '0/3 * * * *'
   push:
     branches:
       - buy-ticket
@@ -11,6 +11,8 @@ jobs:
 
   steps:
     - uses: actions/checkout@v2
+      with:
+          ref: buy-ticket
     - name: Set up JDK 1.8
       uses: actions/setup-java@v1
       with:
@@ -22,4 +24,6 @@ jobs:
         MAIL_USERNAME: zhongzx8080@qq.com
         MAIL_PASSWORD: ${{ secret.MAIL_PASSWORD }}
         MAIL_TO[0]: zhongzx8080@qq.com
-      run: echo $MAIL_USERNAME
+      run: |
+        echo Hello Github Actions
+        echo $MAIL_USERNAME
