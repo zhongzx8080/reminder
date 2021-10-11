@@ -30,6 +30,8 @@ public class BuyTicketRunner implements ApplicationRunner {
     public void run(ApplicationArguments args) throws Exception {
         log.info("开始检测");
         checkBuyTicket();
+        Thread.sleep(10000);
+        log.info("检测完毕");
     }
 
 
