@@ -29,6 +29,5 @@ jobs:
         MAIL_TO_0: ${{ secrets.MAIL_TO_0 }}
         MAIL_TO_1: ${{ secrets.MAIL_TO_1 }}
       run: |
-        echo ls
-        java -jar target/reminder-0.0.1-SNAPSHOT.jar &
+        java -jar target/reminder-0.0.1-SNAPSHOT.jar
 
