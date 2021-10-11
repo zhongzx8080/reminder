@@ -10,6 +10,8 @@ import java.util.List;
 @ConfigurationProperties("mail")
 @Configuration
 public class MailConfig {
+    
+    private boolean enable;
 
     private String username;
 
