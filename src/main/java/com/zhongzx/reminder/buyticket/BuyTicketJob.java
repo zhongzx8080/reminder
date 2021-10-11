@@ -31,7 +31,7 @@ public class BuyTicketJob {
      *
      * */
     //@Scheduled(cron = "0 0 20,21,22 * * ? ")
-    @Scheduled(cron = "0/10 * * * * ?")
+    //@Scheduled(cron = "0/10 * * * * ?")
     public void checkBuyTicket() {
         LocalDateTime tomorrow = LocalDateTime.now().plusDays(1);
         String date = LocalDateTimeUtil.format(tomorrow, "yyyyMMdd");
