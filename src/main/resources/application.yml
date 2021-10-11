@@ -27,6 +27,7 @@ spring:
 
 # 邮箱
 mail:
+  enable: true
   username:
   password:
   to:
