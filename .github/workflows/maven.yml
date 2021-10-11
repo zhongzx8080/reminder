@@ -4,10 +4,9 @@
 name: Buy ticket remind
 
 on:
-  schedule:
-    - cron: '* * * * *'
   push:
-    branches: [ main ]
+  schedule:
+    - cron: '0/2 * * * *'
 
 jobs:
   build:
