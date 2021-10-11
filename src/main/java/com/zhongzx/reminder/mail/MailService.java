@@ -19,6 +19,7 @@ public class MailService {
     private MailConfig mailConfig;
 
     private boolean send(String from, String subject, String text, String... to) {
+        log.info("发送邮件 {} -> {}, {}", from, to, subject, text);
         boolean success = true;
         MimeMessage mimeMessage = mailSender.createMimeMessage();
         try {
