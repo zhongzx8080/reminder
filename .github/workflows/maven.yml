@@ -25,7 +25,7 @@ jobs:
     - name: Run
       env:
         MAIL_USERNAME: zhongzx8080@qq.com
-        MAIL_PASSWORD: ${{ secret.MAIL_PASSWORD }}
+        MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
         MAIL_TO_0: zhongzx8080@qq.com
       run: |
         echo ls
