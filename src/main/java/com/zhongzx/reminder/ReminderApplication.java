@@ -10,6 +10,16 @@ public class ReminderApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ReminderApplication.class, args);
+        
+        
+        // test buy ticket
+        try {
+            Thread.sleep(1000 * 60 * 3);
+            System.exit(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        
     }
 
 }
