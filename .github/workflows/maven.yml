@@ -30,4 +30,4 @@ jobs:
           MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
           MAIL_TO_0: ${{ secrets.MAIL_TO_0 }}
         run: |
-          java -jar target/reminder-0.0.1-SNAPSHOT.jar &
+          java -jar target/reminder-0.0.1-SNAPSHOT.jar
