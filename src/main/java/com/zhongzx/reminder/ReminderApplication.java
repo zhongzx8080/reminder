@@ -15,7 +15,7 @@ public class ReminderApplication {
         // test buy ticket
         try {
             Thread.sleep(1000 * 60 * 3);
-            System.exit(1);
+            System.exit(0);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
