@@ -4,7 +4,6 @@
 name: Buy ticket remind
 
 on:
-  push:
   schedule:
     - cron: '06 12 * * *'
 

@@ -4,7 +4,6 @@
 name: Jue jin checkin & draw
 
 on:
-  push:
   schedule:
     - cron: '06 18 * * *'
 
