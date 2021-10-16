@@ -33,3 +33,13 @@ mail:
   to:
   subject: 买票
   text: 买票
+
+# 掘金配置
+juejin:
+  cookie:
+
+# 每日任务是否启用配置;
+# key为 DailyTaskStrategyConstant 的常量
+# value为 1或true则表示启用，其他值或未配置表示不启用
+# daily_task_buy_ticket: 0
+
