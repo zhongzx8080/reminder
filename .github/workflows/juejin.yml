@@ -1,9 +1,12 @@
 # This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
-name: Jue jin checkin & draw
+name: Jue jin checkin & draw by curl
 
 on:
+  push:
+    branches:
+      - juejin
   schedule:
     - cron: '06 18 * * *'
 
@@ -13,17 +16,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up JDK 8
-        uses: actions/setup-java@v2
+      - name: checkin
+        uses: wei/curl@master
         with:
-          java-version: '8'
-          distribution: 'adopt'
-          cache: maven
-      - name: Build with Maven
-        run: mvn -B package -DskipTests --file pom.xml
-      - name: Run
-        env:
-          DAILY_TASK_JUE_JIN: ${{ secrets.DAILY_TASK_JUE_JIN }}
-        run: |
-          java -jar target/reminder-0.0.1-SNAPSHOT.jar
+          args: --location --request POST 'https://api.juejin.cn/growth_api/v1/check_in' --header 'cookie:${{ secrets.JUEJIN_COOKIE }}'
+      - name: draw
+        uses: wei/curl@master
+        with:
+          args: --location --request POST 'https://api.juejin.cn/growth_api/v1/lottery/draw' --header 'cookie:${{ secrets.JUEJIN_COOKIE }}'
