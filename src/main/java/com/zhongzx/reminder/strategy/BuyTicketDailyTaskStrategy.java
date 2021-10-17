@@ -47,9 +47,6 @@ public class BuyTicketDailyTaskStrategy extends DailyTaskStrategy {
     @Override
     public boolean doDailyTask() {
         boolean sent = mailService.send();
-
-        log.info("【{}】发送提醒结果 {}", LocalDateTime.now(), sent);
-
         return sent;
     }
 }

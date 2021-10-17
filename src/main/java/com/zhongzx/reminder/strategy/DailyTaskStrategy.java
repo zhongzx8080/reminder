@@ -46,7 +46,7 @@ public abstract class DailyTaskStrategy implements EnvironmentAware, BeanNameAwa
         if (enableAll) {
             return;
         }
-        System.out.println("退出程序");
+        log.info("{} 退出程序", beanName);
         System.exit(0);
     }
 

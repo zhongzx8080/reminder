@@ -4,20 +4,20 @@ import lombok.Data;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.List;
+import java.util.HashSet;
 
 @Data
 @ConfigurationProperties("mail")
 @Configuration
 public class MailConfig {
-    
+
     private boolean enable;
 
     private String username;
 
     private String password;
 
-    private List<String> to;
+    private HashSet<String> to;
 
     private String subject;
 
