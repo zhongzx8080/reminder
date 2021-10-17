@@ -5,7 +5,8 @@ name: Jue jin checkin & draw by curl
 
 on:
   push:
-    - juejin
+    branches:
+      - juejin
   schedule:
     - cron: '06 18 * * *'
 
