@@ -81,7 +81,7 @@ public class JuejinService {
             JSONObject responseJson = JSONUtil.parseObj(response);
 
             Integer code = responseJson.getInt(ERR_NO);
-            success = Objects.equals(code, 0);
+            success = Objects.equals(code, 0) && responseJson.getBool("data", false);
         } catch (Exception e) {
             log.error("掘金免费抽奖失败 {}", e.getMessage());
         }
