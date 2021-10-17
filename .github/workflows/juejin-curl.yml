@@ -19,10 +19,8 @@ jobs:
       - name: checkin
         uses: wei/curl@master
         with:
-          args: --location --request POST 'https://api.juejin.cn/growth_api/v1/check_in' --header '${{ secrets.JUEJIN_COOKIE }}'
-      - name: echo cookie
-        run: echo '${{ secrets.JUEJIN_COOKIE }}'
+          args: --location --request POST 'https://api.juejin.cn/growth_api/v1/check_in' --header 'cookie:${{ secrets.JUEJIN_COOKIE }}'
       - name: draw
         uses: wei/curl@master
         with:
-          args: --location --request POST 'https://api.juejin.cn/growth_api/v1/lottery/draw' --header '${{ secrets.JUEJIN_COOKIE }}'
+          args: --location --request POST 'https://api.juejin.cn/growth_api/v1/lottery/draw' --header 'cookie:${{ secrets.JUEJIN_COOKIE }}'
