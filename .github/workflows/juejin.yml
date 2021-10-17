@@ -4,6 +4,9 @@
 name: Jue jin checkin & draw by curl
 
 on:
+  push:
+    branches:
+      - juejin
   schedule:
     - cron: '06 18 * * *'
 
@@ -14,10 +17,6 @@ jobs:
 
     steps:
       - name: Checkin
-        uses: wei/curl@master
-        with:
-          args: --location --request POST 'https://api.juejin.cn/growth_api/v1/check_in' --header 'cookie:${{ secrets.JUEJIN_COOKIE }}'
+        run:  curl --location --request POST 'https://api.juejin.cn/growth_api/v1/check_in' --header 'cookie:${{ secrets.JUEJIN_COOKIE }}'
       - name: Draw
-        uses: wei/curl@master
-        with:
-          args: --location --request POST 'https://api.juejin.cn/growth_api/v1/lottery/draw' --header 'cookie:${{ secrets.JUEJIN_COOKIE }}'
+        run:  curl --location --request POST 'https://api.juejin.cn/growth_api/v1/lottery/draw' --header 'cookie:${{ secrets.JUEJIN_COOKIE }}'
