@@ -1,0 +1,17 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: bilibili manga
+
+on:
+  schedule:
+    - cron: '06 16 * * *'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkin
+        run:  curl --location --request POST 'https://manga.bilibili.com/twirp/activity.v1.Activity/ClockIn' --form 'platform="android"' --header 'cookie:${{ secrets.BILIBILI_MANGA_COOKIE }}'
