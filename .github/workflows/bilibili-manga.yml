@@ -14,4 +14,4 @@ jobs:
 
     steps:
       - name: Checkin
-        run:  curl --location --request POST 'https://manga.bilibili.com/twirp/activity.v1.Activity/ClockIn' --form 'platform="android"' --header 'cookie:${{ secrets.BILIBILI_MANGA_COOKIE }}'
+        run:  curl --location --request POST 'https://manga.bilibili.com/twirp/activity.v1.Activity/ClockIn' --form 'platform="android"' --header "cookie:${{ secrets.BILIBILI_MANGA_COOKIE }}"
