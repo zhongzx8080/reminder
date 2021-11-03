@@ -5,7 +5,7 @@ name: Jue jin checkin & draw by curl
 
 on:
   schedule:
-    - cron: '06 18 * * *'
+    - cron: '8 16 * * *'
 
 jobs:
   build:
