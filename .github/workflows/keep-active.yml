@@ -1,0 +1,29 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: Keep active
+
+on:
+  schedule:
+    - cron: '04 04 * * *'
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+      - uses: actions/checkout@v2
+      - name: Update time
+      - run: |
+          git checkout update
+          echo `date` > date.txt
+      - name: Commit
+        run: |
+          git add .
+          git commit -m "`date`" -a
+      - name: Push changes
+          uses: ad-m/github-push-action@master
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
