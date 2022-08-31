@@ -9,21 +9,19 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
-      - uses: actions/checkout@v2
-      - name: Update time
-      - run: |
+      - uses: actions/checkout@v3
+
+      - name: Create local changes
+        run: |
           git checkout update
           echo `date` > date.txt
-      - name: Commit
+
+      - name: Commit files
         run: |
-          git add .
-          git commit -m "updated time is `date`" -a
+          git commit -m "update time is `date`" -a
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
-            github_token: ${{ secrets.ACCESS_TOKEN }}
+          github_token: ${{ secrets.ACCESS_TOKEN }}
