@@ -12,10 +12,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+        with:
+          ref: update
 
       - name: Create local changes
         run: |
-          git checkout update
           echo `date` > date.txt
 
       - name: Commit files
