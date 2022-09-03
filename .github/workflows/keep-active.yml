@@ -4,8 +4,11 @@
 name: Keep active
 
 on:
+  push:
+    branches:
+      - main
   schedule:
-    - cron: '04 04 * * *'
+    - cron: '04 00 * * *'
 
 jobs:
   build:
@@ -21,10 +24,13 @@ jobs:
 
       - name: Commit files
         run: |
+          git branch
+          git pull
           git config --global user.email ${{ secrets.USER_EMAIL }}
           git config --global user.name ${{ secrets.USER_NAME }}
           git commit -m "update time is `date`" -a
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
+          branch: update
           github_token: ${{ secrets.ACCESS_TOKEN }}
